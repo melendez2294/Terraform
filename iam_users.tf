@@ -7,8 +7,8 @@ variable "username" {
   default = ["mark", "artur", "luis", "garrett"]
 }
 
-resource "aws_iam_group" "project1_team" {
-  name   = "project1_team"
+resource "aws_iam_group" "thegroup" {
+  name   = "thegroup"
   path   = "/cit480/"
 }
 
@@ -18,11 +18,11 @@ resource "aws_iam_user" "user_creation" {
   path   = "/cit480/"
 }
 
-resource "aws_iam_user_group_membership" "user_add" {
-  count  = "${length(var.username)}"
-  user   = "${element(var.username, count.index)}"
+resource "aws_iam_user_group_membership" "add" {
+  count = "${length(var.username)}"
+  user = "${element(var.username, count.index)}"
 
   groups = [
-    "{aws_iam_group.project1_team.name}"
+    "${aws_iam_group.thegroup.name}",
   ]
 }
