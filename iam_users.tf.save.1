@@ -1,0 +1,28 @@
+provider "aws" {
+  region		  = "us-west-2"
+}
+
+variable "username" {
+  type    = "list"
+  default = ["mark", "artur", "luis", "garrett"]
+}
+
+resource "aws_iam_group" "thegroup" {
+  name   = "thegroup"
+  path   = "/cit480/"
+}
+
+resource "aws_iam_user" "user_creation" {
+  count  = "${length(var.username)}"
+  name   = "${element(aws_iam_user., count.index)}"
+  path   = "/cit480/"
+}
+
+resource "aws_iam_user_group_membership" "user_add" {
+  count = "${length(var.username)}"
+  user = "${aws_iam_user.user_creation[count.index]}"
+
+  groups = [
+    "{aws_iam_group.thegroup.name}"
+  ]
+}

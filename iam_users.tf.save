@@ -26,28 +26,3 @@ resource "aws_iam_user_group_membership" "add" {
     "${aws_iam_group.thegroup.name}",
   ]
 }
-
-resource "aws_iam_group_policy" "cit480policy" {
-  name = "cit480policy"
-  group = "${aws_iam_group.thegroup.id}"
-  
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "Stmt1572583073912",
-      "Action": "*",
-      "Effect": "Allow",
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "aws:RequestedRegion": "us-west-2"
-        }
-      }
-    }
-  ]
-}
-POLICY
-}
-
