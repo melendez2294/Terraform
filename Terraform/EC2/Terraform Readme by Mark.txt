@@ -21,15 +21,15 @@ s3 bucket container.
 
 Example: Folder Hierarchy of the Terraform Environment
 ----------------------------------------------------------
-	      Terraform 
-                              / | \
+	          Terraform 
+                    / | \
 	          /   |   \
-                          /     |     \
+                /     |     \
 	       /      |       \ 
-                   EC2/    ?/       ?/
-	    |
-             EC2.tf & s3/
-	           | 
-                         main.tf 
+             EC2/    ?/       ?/
+	      |
+         EC2.tf & s3/
+	      | 
+           main.tf 
 
 
