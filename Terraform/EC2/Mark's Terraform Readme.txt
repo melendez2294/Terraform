@@ -1,5 +1,5 @@
 Terraform Documentation
-____________________
+_______________________
 
 ec2.tf 
 -------
@@ -21,7 +21,7 @@ s3 bucket container.
 
 Example: Folder Hierarchy of the Terraform Environment
 ----------------------------------------------------------
-	      Terraform 
+	          Terraform 
                     / | \
 	          /   |   \
                 /     |     \
