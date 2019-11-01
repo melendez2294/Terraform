@@ -20,7 +20,7 @@ or blocks that work together. The last two of these blocks are the s3 bucket and
 s3 bucket container. 
 
 Example: Folder Hierarchy of the Terraform Environment
-----------------------------------------------------------
+-------------------------------------------------------
 	          Terraform 
                     / | \
 	          /   |   \
