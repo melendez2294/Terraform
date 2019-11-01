@@ -1,6 +1,6 @@
 *.terraform/ 
 *.retry 
-*.tfstate
+*.tfstate*
 *.tfstate.backup
 *hosts.ini
 *.DS_Store
