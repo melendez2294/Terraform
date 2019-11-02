@@ -1,12 +1,16 @@
+h1,p { 
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #EBE79D;
+    background-color: #93BDFF;
 }
 
 .masthead {
     padding: 1em 2em;
-    background-color: #6B6825;
+    background-color: #5195FF;
     color: #fff;
 }
 
@@ -15,11 +19,12 @@ body {
 }
 
 .intro {
+    font-family: Arial, Helvetica, sans-serif;
     padding: 2em 2em;
-    color: #333;
-    background: #B8B57B;
+    color: #FFF;
+    background: #73AAFF;
+    text-align: center;
 }
-
 
 .intro p,
 .test-area {
@@ -33,13 +38,14 @@ body {
 }
 
 .test-wrapper {
-    border: 10px solid grey;
+    border: 10px solid #E9F1FF;
     border-radius: 10px;
 }
 
 #origin-text {
     padding: 1em 1em 0;
-    background-color: #EBE79D;
+    color: #FFF;
+    background-color: #93BDFF;
     font-size: 1.3em;
 }
 
@@ -74,11 +80,12 @@ body {
     font-size: 1.7em;
     font-weight: bold;
     color: #38AFFF;
-    background: white ;
+    background: #E9F1FF ;
     border: 10px solid #38AFFF;
+    border-radius: 10px;
 }
 
 #reset:hover {
-    color: white;
+    color: #E9F1FF;
     background-color: #38AFFF;
 }

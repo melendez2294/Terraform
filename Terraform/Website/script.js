@@ -36,11 +36,12 @@ function match() {
   var textMatch = originText.substring(0, testArea.value.length);
     if (testArea.value == originText) {
       testWrapper.style.borderColor = "#66E766";
+      theTimer.style.color = "#66E766";
       clearInterval(interval);
     }
     
     else if (testArea.value  == textMatch) {
-      testWrapper.style.borderColor = "#66E5E7";
+      testWrapper.style.borderColor = "#66E766";
     } 
     
     else {
@@ -67,7 +68,8 @@ function reset() {
   started = 0;
   clock = [0, 0, 0, 0];
   testArea.value = "";
-  testWrapper.style.borderColor = "#808080";
+  testWrapper.style.borderColor = "#E9F1FF";
+  theTimer.style.color = "#FFFFFF";
 }
 
 // Event listeners for keyboard input and the reset button:
