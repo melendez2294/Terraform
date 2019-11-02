@@ -1,169 +1,187 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link id="favicon" rel="icon" href="favicon.ico?v=3" type="image/x-icon">
-  <link id="apple-touch-icon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3">
-  <link id="oembed" rel="alternate" type="application/json+oembed" href="" title="oEmbed" />
-  <link rel="stylesheet" type="text/css" href="https://cloud.webtype.com/css/3a8e55c6-b1f3-4659-99eb-125ae72bd084.css">
-  
-  <link class="theme" rel="stylesheet" type="text/css" href="themes/cosmos.version.c62b918f8ee0efc782f3.css">
-  
-  <link class="theme" rel="stylesheet" type="text/css" href="themes/sugar.version.b2d64a89451100409d8a.css">
-  
 
-  <script>
-    (function () {
-      try {
-        var path = document.location.hash.split("?")[0].split("/");
-        var domain = path[1];
+body,
+button,
+input,
+select,
+textarea {
+	font-family: 'Source Sans Pro', 'Helvetica', Arial, sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
+}
 
-        var NOT_DOMAINS = [
-          "new-project",
-          "sign-in",
-          "facebook",
-          "sign-out",
-          "sign-up",
-          "email-login"
-        ];
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+}
 
-        if (domain.length === 0 || path.length !== 2 || NOT_DOMAINS.includes(domain)) {
-          return;
-        }
+p {
+	margin-bottom: 1.5em;
+}
 
-        (new Image()).src = "https://api.glitch.com" + "/" + domain + "/preempt";
-      } catch (e) {
-        console.error(e)
-       }
-    })()
-  </script>
+b,
+strong {
+	font-weight: bold;
+}
 
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src
-      'self';
-    connect-src
-      'self'
-      api.glitch.com api.glitch.development api.staging.glitch.com
-      wss://api.glitch.com wss://api.glitch.development wss://api.staging.glitch.com wss://glitch.development
-      https://*.woopra.com
-      api.segment.io
-      api.github.com
-      libraries.io
-      s3.amazonaws.com
-      https://securetoken.googleapis.com
-      https://www.googleapis.com
-      
-      https://settings.luckyorange.net wss://visitors.live wss://*.visitors.live https://pubsub.googleapis.com https://api.luckyorange.com
-      https://sentry.io
-      
-      https://api.amplitude.com;
-    font-src
-      cloud.webtype.com;
-    frame-src
-      https://*.glitch.me https://*.glitch.staging.me https://*.glitch.development
-      https://accounts.google.com
-      https://content-firebase.googleapis.com/
-      blob:
-      data:
-      'self';
-    img-src
-      'self'
-      https://*
-      blob:
-      data:
-      
-     	https://d10lpsik1i8c69.cloudfront.net;
-    media-src
-      'self'
-      https://*
-      blob:
-      data:;
-    object-src
-      blob:
-      data:
-      'self';
-    script-src
-      'self'
-      
-      https://apis.google.com
-      https://cdnjs.cloudflare.com
-      https://cdn.segment.com
-      https://ajax.googleapis.com
-      https://*.woopra.com
-      'sha256-aROmP5KBVON8dHdF7kTobxNwhI67hJuBpk+jNh/jbM4='
-      'sha256-lIXJkTrfgeKmujhwsIkqzNbMkplZdPFm1ERXsf46uOw='
-      'sha256-To0Iwo79L42agXa29pvaAn64gM4rwT1BflbRPGdqcUg='
-      
-      'sha256-IWN+DH0UXsSKPql06C66AvLM8/jMYbOe+wVRfPlzHDY='
-      
-      http://www.luckyorange.com https://ssl.luckyorange.com https://d10lpsik1i8c69.cloudfront.net
-      
-      https://cdn.amplitude.com;
-    style-src
-      'self'
-      'unsafe-inline'
-      https://cloud.webtype.com
-      
-     	https://d10lpsik1i8c69.cloudfront.net;
-    worker-src
-      'self'
-      
-      blob:
-  ">
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
 
-  <title>Glitch :･ﾟ✧</title>
-  <noscript>
-    <title>Glitch</title>
-  </noscript>
+blockquote {
+	margin: 0 1.5em;
+}
 
-  <meta name="description" content="Combining automated deployment, instant hosting &amp; collaborative editing, Glitch gets you straight to coding so you can build full-stack web apps, fast">
-  <meta name="keywords" content="developer, javascript, nodejs, editor, ide, development, online, web, code editor, html, css">
+address {
+	margin: 0 0 1.5em;
+}
 
-  <!-- facebook open graph tags -->
-  <meta name="og:type" content="website">
-  <meta name="og:url" content="https://glitch.com">
-  <meta name="og:title" content="Glitch">
-  <meta name="og:description" content="Combining automated deployment, instant hosting &amp; collaborative editing, Glitch gets you straight to coding so you can build full-stack web apps, fast">
-  <meta name="og:image" content="https://glitch.com/edit/images/logos/glitch/social-card@2x.png">
-  <!-- twitter card tags (stacks with og: tags) -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@glitch">
-  <meta name="twitter:title" content="Glitch">
-  <meta name="twitter:description" content="Combining automated deployment, instant hosting &amp; collaborative editing, Glitch gets you straight to coding so you can build full-stack web apps, fast">
-  <meta name="twitter:image" content="https://glitch.com/edit/images/logos/glitch/social-card@2x.png">
-  <meta name="twitter:image:alt" content="Glitch Logo">
-  <meta name="twitter:url" content="https://glitch.com">
+pre {
+	background: #eee;
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-size: 15px;
+	font-size: 1.5rem;
+	line-height: 1.6;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6em;
+}
 
-  <!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <script>
-    if (!window.Promise) document.write('<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"><\/script>');
-  </script>
-  <script>
-    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";}}();
-  </script>
+code,
+kbd,
+tt,
+var {
+	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
 
-</head>
-<body>
-  <noscript>
-    <h1>
-      To use Glitch, please enable JavaScript
-    </h1>
-  </noscript>
+abbr,
+acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
 
-  <div id="__react-overlay-container"></div>
-  <div id="__react-pop-root"></div>
-  <div id="__react-app-root"></div>
+mark,
+ins {
+	background: #fff9c0;
+	text-decoration: none;
+}
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script>
-    if (typeof jQuery === 'undefined') document.write('<script type="text/javascript" src="./jquery-3.1.1.min.js"><\/script>');
-  </script>
-  
-  <script src="index.version.664aed9a7ef315758d69.js"></script>
-  
-  <script src="https://apis.google.com/js/api.js"></script>
-</body>
-</html>
+sup,
+sub {
+	font-size: 75%;
+	height: 0;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	bottom: 1ex;
+}
+
+sub {
+	top: .5ex;
+}
+
+small {
+	font-size: 75%;
+}
+
+big {
+	font-size: 125%;
+}
+
+/*--------------------------------------------------------------
+Layout
+--------------------------------------------------------------*/
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #EBE79D;
+}
+
+.masthead {
+    padding: 1em 2em;
+    background-color: #6B6825;
+    color: #fff;
+}
+
+.masthead h1 {
+    text-align: center;
+}
+
+.intro {
+    padding: 2em 2em;
+    color: #333;
+    background: #B8B57B;
+}
+
+
+.intro p,
+.test-area {
+    margin: 0 auto;
+    max-width: 550px;
+}
+
+.test-area {
+    margin-bottom: 4em;
+    padding: 0 2em;
+}
+
+.test-wrapper {
+    border: 10px solid grey;
+    border-radius: 10px;
+}
+
+#origin-text {
+    padding: 1em 1em 0;
+    background-color: #EBE79D;
+    font-size: 1.3em;
+}
+
+#origin-text p {
+    margin: 0;
+    padding-bottom: 1em;
+    font-weight: bold;   
+}
+
+.test-wrapper {
+    display: flex;
+}
+
+.test-wrapper textarea {
+    flex: 1;
+}
+
+.meta {
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.timer {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+#reset {
+    padding: .5em 1em;
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #38AFFF;
+    background: white ;
+    border: 10px solid #38AFFF;
+}
+
+#reset:hover {
+    color: white;
+    background-color: #38AFFF;
+}

@@ -1,169 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link id="favicon" rel="icon" href="favicon.ico?v=3" type="image/x-icon">
-  <link id="apple-touch-icon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3">
-  <link id="oembed" rel="alternate" type="application/json+oembed" href="" title="oEmbed" />
-  <link rel="stylesheet" type="text/css" href="https://cloud.webtype.com/css/3a8e55c6-b1f3-4659-99eb-125ae72bd084.css">
-  
-  <link class="theme" rel="stylesheet" type="text/css" href="themes/cosmos.version.c62b918f8ee0efc782f3.css">
-  
-  <link class="theme" rel="stylesheet" type="text/css" href="themes/sugar.version.b2d64a89451100409d8a.css">
-  
+const testWrapper = document.querySelector(".test-wrapper");
+const testArea = document.querySelector("#test-area");
+const originText = document.querySelector("#origin-text p").innerHTML;
+const resetButton = document.querySelector("#reset");
+const theTimer = document.querySelector(".timer");
 
-  <script>
-    (function () {
-      try {
-        var path = document.location.hash.split("?")[0].split("/");
-        var domain = path[1];
+var interval;
+var clock = [0, 0, 0, 0];
+var started = 0;
+var digit;
 
-        var NOT_DOMAINS = [
-          "new-project",
-          "sign-in",
-          "facebook",
-          "sign-out",
-          "sign-up",
-          "email-login"
-        ];
+// Add leading zero to numbers 9 or below (purely for aesthetics):
 
-        if (domain.length === 0 || path.length !== 2 || NOT_DOMAINS.includes(domain)) {
-          return;
-        }
+function zero(digit) {
+	if (digit <= 9) {
+		digit = "0" + digit;
+	}
+	return digit;
+}
 
-        (new Image()).src = "https://api.glitch.com" + "/" + domain + "/preempt";
-      } catch (e) {
-        console.error(e)
-       }
-    })()
-  </script>
+// Run a standard minute/second/hundredths timer:
 
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src
-      'self';
-    connect-src
-      'self'
-      api.glitch.com api.glitch.development api.staging.glitch.com
-      wss://api.glitch.com wss://api.glitch.development wss://api.staging.glitch.com wss://glitch.development
-      https://*.woopra.com
-      api.segment.io
-      api.github.com
-      libraries.io
-      s3.amazonaws.com
-      https://securetoken.googleapis.com
-      https://www.googleapis.com
-      
-      https://settings.luckyorange.net wss://visitors.live wss://*.visitors.live https://pubsub.googleapis.com https://api.luckyorange.com
-      https://sentry.io
-      
-      https://api.amplitude.com;
-    font-src
-      cloud.webtype.com;
-    frame-src
-      https://*.glitch.me https://*.glitch.staging.me https://*.glitch.development
-      https://accounts.google.com
-      https://content-firebase.googleapis.com/
-      blob:
-      data:
-      'self';
-    img-src
-      'self'
-      https://*
-      blob:
-      data:
-      
-     	https://d10lpsik1i8c69.cloudfront.net;
-    media-src
-      'self'
-      https://*
-      blob:
-      data:;
-    object-src
-      blob:
-      data:
-      'self';
-    script-src
-      'self'
-      
-      https://apis.google.com
-      https://cdnjs.cloudflare.com
-      https://cdn.segment.com
-      https://ajax.googleapis.com
-      https://*.woopra.com
-      'sha256-aROmP5KBVON8dHdF7kTobxNwhI67hJuBpk+jNh/jbM4='
-      'sha256-lIXJkTrfgeKmujhwsIkqzNbMkplZdPFm1ERXsf46uOw='
-      'sha256-To0Iwo79L42agXa29pvaAn64gM4rwT1BflbRPGdqcUg='
-      
-      'sha256-IWN+DH0UXsSKPql06C66AvLM8/jMYbOe+wVRfPlzHDY='
-      
-      http://www.luckyorange.com https://ssl.luckyorange.com https://d10lpsik1i8c69.cloudfront.net
-      
-      https://cdn.amplitude.com;
-    style-src
-      'self'
-      'unsafe-inline'
-      https://cloud.webtype.com
-      
-     	https://d10lpsik1i8c69.cloudfront.net;
-    worker-src
-      'self'
-      
-      blob:
-  ">
+function runClock() {
+	var runClock = zero(clock[0]) + ":" + zero(clock[1]) + ":" + zero(clock[2]);
+    theTimer.innerHTML = runClock;
+      clock[0] = Math.floor(clock[3] / 6000);
+      clock[1] = Math.floor(clock[3] / 100 - clock[0] * 60);
+      clock[2] = Math.floor(clock[3] - clock[0] * 6000 - clock[1] * 100);
+      clock[3]++;
+}
 
-  <title>Glitch :･ﾟ✧</title>
-  <noscript>
-    <title>Glitch</title>
-  </noscript>
 
-  <meta name="description" content="Combining automated deployment, instant hosting &amp; collaborative editing, Glitch gets you straight to coding so you can build full-stack web apps, fast">
-  <meta name="keywords" content="developer, javascript, nodejs, editor, ide, development, online, web, code editor, html, css">
+// Match the text entered with the provided text on the page:
 
-  <!-- facebook open graph tags -->
-  <meta name="og:type" content="website">
-  <meta name="og:url" content="https://glitch.com">
-  <meta name="og:title" content="Glitch">
-  <meta name="og:description" content="Combining automated deployment, instant hosting &amp; collaborative editing, Glitch gets you straight to coding so you can build full-stack web apps, fast">
-  <meta name="og:image" content="https://glitch.com/edit/images/logos/glitch/social-card@2x.png">
-  <!-- twitter card tags (stacks with og: tags) -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@glitch">
-  <meta name="twitter:title" content="Glitch">
-  <meta name="twitter:description" content="Combining automated deployment, instant hosting &amp; collaborative editing, Glitch gets you straight to coding so you can build full-stack web apps, fast">
-  <meta name="twitter:image" content="https://glitch.com/edit/images/logos/glitch/social-card@2x.png">
-  <meta name="twitter:image:alt" content="Glitch Logo">
-  <meta name="twitter:url" content="https://glitch.com">
+function match() {
+  var textMatch = originText.substring(0, testArea.value.length);
+    if (testArea.value == originText) {
+      testWrapper.style.borderColor = "#66E766";
+      clearInterval(interval);
+    }
+    
+    else if (testArea.value  == textMatch) {
+      testWrapper.style.borderColor = "#66E5E7";
+    } 
+    
+    else {
+      testWrapper.style.borderColor = "#ED3D28";
+    }
+}
 
-  <!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <script>
-    if (!window.Promise) document.write('<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"><\/script>');
-  </script>
-  <script>
-    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";}}();
-  </script>
 
-</head>
-<body>
-  <noscript>
-    <h1>
-      To use Glitch, please enable JavaScript
-    </h1>
-  </noscript>
+// Start the timer:
 
-  <div id="__react-overlay-container"></div>
-  <div id="__react-pop-root"></div>
-  <div id="__react-app-root"></div>
+function start() {
+  if (testArea.value.length === 0 && started == 0) {
+    started = 1;
+    interval = setInterval(runClock, 10);
+  }
+}
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script>
-    if (typeof jQuery === 'undefined') document.write('<script type="text/javascript" src="./jquery-3.1.1.min.js"><\/script>');
-  </script>
-  
-  <script src="index.version.664aed9a7ef315758d69.js"></script>
-  
-  <script src="https://apis.google.com/js/api.js"></script>
-</body>
-</html>
+// Reset everything:
+
+function reset() {
+  clearInterval(interval);
+  interval = null;
+  theTimer.innerHTML = "00:00:00";
+  started = 0;
+  clock = [0, 0, 0, 0];
+  testArea.value = "";
+  testWrapper.style.borderColor = "#808080";
+}
+
+// Event listeners for keyboard input and the reset button:
+
+testArea.addEventListener("keypress", start, 1);
+resetButton.addEventListener("click", reset, 1);
+testArea.addEventListener("keyup", match, 1);
