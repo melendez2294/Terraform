@@ -1,10 +1,16 @@
 provider "aws" {
   region		  = "us-west-2"
+  profile		  = "default"
+}
+
+variable "keybase" {
+  type    = "list"
+  default = ["keybase:MLawton", "keybase:atarverdyan", "keybase:melendez2294", "keybase:garrettc777"]
 }
 
 variable "username" {
   type    = "list"
-  default = ["mark", "artur", "luis", "garrett"]
+  default = ["mark", "artur", "luis", "gary"]
 }
 
 resource "aws_iam_group" "thegroup" {
@@ -36,18 +42,22 @@ resource "aws_iam_group_policy" "cit480policy" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "Stmt1572583073912",
-      "Action": "*",
       "Effect": "Allow",
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "aws:RequestedRegion": "us-west-2"
-        }
-      }
+      "Action": "*",
+      "Resource": "*"
     }
   ]
 }
 POLICY
+}
+
+ resource "aws_iam_user_login_profile" "loginprofile" {
+  count  = "${length(var.username)}"
+  user = "${element(var.username, count.index)}"
+  pgp_key = "${element(var.keybase, count.index)}"
+}
+
+output "password" {
+  value = "${aws_iam_user_login_profile.loginprofile.*.encrypted_password}"
 }
 
