@@ -1,0 +1,15 @@
+Hi Garrett, 
+
+The Terraform code for the Elastic Load Balancer should be working properly now, but it still requires a little more information to be synchronized with the "thegroupseniordesgin.tech" domain name. It requires the IAM ID number and an ACM (Amazon Certificate Manager) certificate from the owner of the domain name to be completely operational. I spoke with the professor, and she said that the necessary ACM certificate for the SSL connection can be manually created directly in the AWS console or indirectly generated from Terraform code. At the moment, the code throws no error messages when it is run in the terminal. You can run this code as it is with the "$ terraform apply" command to verify that it functions correctly since the "$ terraform plan" command returned weird results. It would give the green light even though there was missing content. The apply command seemed to give more details and showed if the infrastucture was actually created in the AWS 
+
+I need you to add your IAM user account ID number (if it is not accurate) and an ACM certificate to one of the two specified blocks of code I commented out with the # symbol near the bottom of my EC2.tf script file. This should specify the path or Amazon Resource Name (ARN) to the specific resource, in this case an ACM certificate. 
+The first method of creating a certificate can be found at the Certificate Manager services in the AWS console, while the needed Terrafrom code for the second method is located here: "https://www.azavea.com/blog/2018/07/16/provisioning-acm--certificates-on-aws-with-terraform/".
+
+Once the requested changes have been made, can you please reupload the modified EC2.tf to the Mark-EC2 branch in Github or my Google Drive, so I can pull the Terraform code and see that it is working right? 
+
+Thanks, 
+
+Mark 
+
+
+
