@@ -107,18 +107,18 @@ resource "aws_security_group" "aws-sg" {
 
 # Block below requires an ACM certificate and ARN from the domain name owner to establish SSL connection - Garrett 
 # ACM certificate required for the load balancer 
-#resource "aws_acm_certificate" "cert" {
-  #domain_name       = "thegroupseniordesign.tech"
-  #validation_method = "DNS"
+resource "aws_acm_certificate" "cert" {
+  domain_name       = "thegroupseniordesign.tech"
+  validation_method = "DNS"
 
-  #tags = {
-    #Environment = "test"
-  #}
+  tags = {
+    Environment = "test"
+  }
 
-  #lifecycle {
-    #create_before_destroy = true
-  #}
-#}
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
 # Create a new load balancer
 resource "aws_elb" "elb" {
