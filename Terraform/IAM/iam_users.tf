@@ -1,7 +1,7 @@
 terraform {
     backend  "s3" {
     region         = "us-west-2"
-    bucket         = "cit480-thegroup"
+    bucket         = "cit480groupbuck"
     key            = "ec2/terraform.tfstate" 
     dynamodb_table = "tf-state-lock"
     }
