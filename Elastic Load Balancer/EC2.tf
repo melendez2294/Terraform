@@ -133,13 +133,13 @@ resource "aws_elb" "elb" {
   }
 
   # This block requires an ACM certificate and ARN from the domain name owner to establish SSL connection - Garrett
-  #listener {
-    #instance_port      = 8000
-    #instance_protocol  = "http"
-    #lb_port            = 443
-    #lb_protocol        = "https"
-    #ssl_certificate_id = "${arn:aws:iam::233313553311:aws_acm_certificate.cert}"
-  #}
+  listener {
+    instance_port      = 8000
+    instance_protocol  = "http"
+    lb_port            = 443
+    lb_protocol        = "https"
+    ssl_certificate_id = "${ arn:aws:acm:us-west-2:327250713413:certificate/c058d0e9-b749-4406-989a-c20f1d538a57}"
+  }
 
   health_check {
     healthy_threshold   = 2
