@@ -12,9 +12,11 @@
   - **VPC**: The subnets, route tables, internet gatewats, and NAT instances should be created.
   - **Route53**: The routing table should be created with references to the SSL certificate to ensure it is validated and used for the ELB.
   - **EC2**: The webservers 1 and 2 should be created and configured later.
+  - **Security Groups**: There should be security groups attached to each EC2 instance.
   - **ELB**: The load balancer should reference the EC2 instances to do any given load balancing system and also have a failover system in place.
 ## Ansible Tasks:
   - The one ansible task at hand is to install apache and copy over the webserver html and css files to those EC2 instances.
   - This must be done through the bastion set up to transfer it to the webservers as the middle-man.
   
-
+## Serverless tasks:
+  - Two lambda functions should be created to start and stop the EC2 instances at specific times through the cloud cronjobs.
