@@ -17,7 +17,7 @@ provider "aws" {
 resource "aws_instance" "bastion" {
       ami = "ami-06d51e91cea0dac8d"
       instance_type = "t2.micro"
-      key_name = "Project1"
+      key_name = "projec1"
       security_groups = ["${aws_security_group.bastion-sg.name}"]
       root_block_device { 
       		delete_on_termination = true 
@@ -50,7 +50,7 @@ resource "aws_security_group" "bastion-sg" {
 resource "aws_instance" "web-server-1" {
       ami = "ami-06d51e91cea0dac8d"
       instance_type = "t2.micro"
-      key_name = "Project1"
+      key_name = "projec1"
       security_groups = ["${aws_security_group.aws-sg.name}"]
       root_block_device { 
       		delete_on_termination = true 
@@ -64,7 +64,7 @@ resource "aws_instance" "web-server-1" {
 resource "aws_instance" "web-server-2" {
       ami = "ami-06d51e91cea0dac8d"
       instance_type = "t2.micro"
-      key_name = "Project1"
+      key_name = "projec1"
       security_groups = ["${aws_security_group.aws-sg.name}"]
       root_block_device { 
       		delete_on_termination = true 
